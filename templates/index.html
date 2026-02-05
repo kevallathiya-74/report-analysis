@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinical Report Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏥 Longitudinal Clinical Report Analyzer</h1>
+            <p class="subtitle">Analyze multiple medical reports to identify trends and persistent abnormalities</p>
+        </header>
+
+        <div class="card">
+            <h2>👤 Patient Information</h2>
+            <div class="patient-info-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="patientName">Patient Name *</label>
+                        <input type="text" id="patientName" placeholder="Enter patient name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="patientId">Patient ID</label>
+                        <input type="text" id="patientId" placeholder="e.g., P12345">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="patientAge">Age</label>
+                        <input type="number" id="patientAge" placeholder="e.g., 45" min="0" max="150">
+                    </div>
+                    <div class="form-group">
+                        <label for="patientGender">Gender</label>
+                        <select id="patientGender">
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reportType">Report Type *</label>
+                        <select id="reportType" required>
+                            <option value="">Select Type</option>
+                            <option value="Diabetes">Diabetes</option>
+                            <option value="Cardiology">Cardiology</option>
+                            <option value="General Health">General Health</option>
+                            <option value="Lipid Profile">Lipid Profile</option>
+                            <option value="Kidney Function">Kidney Function</option>
+                            <option value="Liver Function">Liver Function</option>
+                            <option value="Thyroid">Thyroid</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📋 Enter Patient Visit Data</h2>
+            <p class="info-text">Add clinical reports from multiple visits for comprehensive analysis</p>
+            
+            <div id="visitsContainer">
+                <!-- Visit forms will be added here dynamically -->
+            </div>
+            
+            <div class="button-group">
+                <button type="button" id="addVisitBtn" class="btn btn-secondary">➕ Add Visit</button>
+                <button type="button" id="analyzeBtn" class="btn btn-primary">🔍 Analyze Reports</button>
+            </div>
+        </div>
+
+        <div id="loadingSection" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Analyzing your clinical data...</p>
+        </div>
+
+        <div id="resultsSection" style="display: none;">
+            <div class="card">
+                <h2>📊 Analysis Results</h2>
+                <div id="summarySection"></div>
+                <div id="parametersSection"></div>
+            </div>
+
+            <div class="card" id="guidanceSection" style="display: none;">
+                <h2>💡 Lifestyle Guidance</h2>
+                <p class="warning-text">⚠️ These are educational suggestions, NOT medical prescriptions</p>
+                <div id="guidanceContent"></div>
+                <div class="disclaimer">
+                    <strong>⚕️ IMPORTANT:</strong> Schedule a follow-up with your healthcare provider to discuss these findings and receive personalized medical advice.
+                </div>
+            </div>
+        </div>
+
+        <div id="errorSection" class="error-message" style="display: none;"></div>
+
+        <footer>
+            <div class="disclaimer">
+                <strong>DISCLAIMER:</strong> This analysis is for educational purposes only. It does NOT constitute medical advice, diagnosis, or treatment. Always consult qualified healthcare professionals for medical decisions.
+            </div>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
